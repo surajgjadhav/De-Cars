@@ -2,8 +2,11 @@
 src = "src"
 out = "out"
 libs = ["dependencies"]
+solc = "0.8.20"
 
 [dependencies]
 forge-std = "1.9.5"
+"@openzeppelin-contracts" = "5.2.0"
+"@chainlink-contracts" = "1.3.0"
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
