@@ -1,18 +1,10 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
+import type { Metadata } from "next";
 import { Providers } from "./providers";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { gravitasOne, serif } from "@/styles/font";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,9 +19,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${serif.variable} ${gravitasOne.variable} antialiased bg-amber-50`}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <div className="flex flex-col min-h-screen">
+            <Header />
+            <main className="grow font-serif">
+              <div className="max-w-screen-lg mx-auto px-4 py-8">
+                {children}
+              </div>
+            </main>
+            <Footer />
+          </div>
+        </Providers>
       </body>
     </html>
   );

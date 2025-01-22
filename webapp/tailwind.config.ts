@@ -12,6 +12,12 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        "open-sans": ["var(--font-open-sans)"],
+        tinos: ["var(--font-serif)"],
+        playfair: ["var(--font-playfair-display)"],
+        "gravitas-one": ["var(--font-gravitas-one)"],
+      },
     },
   },
   plugins: [],

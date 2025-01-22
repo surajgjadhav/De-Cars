@@ -1,27 +1,87 @@
-import GetCounter from "@/components/GetCounter";
-import IncrementCounterBtn from "@/components/IncrementCounterBtn";
-import SetCounterForm from "@/components/SetCounterForm";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import BannerCard from "@/components/BannerCard";
+import ExploreCarButton from "@/components/ExploreCarButton";
+import GridLayout from "@/components/GridLayout";
+import Tag from "@/components/Tag";
+import Image from "next/image";
+import Banner1 from "../../public/banner-1.jpg";
+import Banner2 from "../../public/banner-2.png";
+import Banner3 from "../../public/banner-3.jpg";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <div className="flex items-center justify-between gap-4 w-full">
-          <h1 className="text-lg font-semibold">Counter App</h1>
-          <ConnectButton />
+    <GridLayout className="gap-6">
+      <h1 className="col-span-full font-gravitas-one text-7xl text-center">
+        Vintage Cars
+      </h1>
+      <div className="col-span-full">
+        <BannerCard>
+          <GridLayout>
+            <div className="col-span-9">
+              <Image
+                src={Banner1}
+                alt="banner image"
+                width={500}
+                className="rounded"
+              />
+            </div>
+            <div className="col-span-3 flex flex-col gap-4 items-start justify-between">
+              <div className="flex flex-col gap-4 items-start">
+                <Tag title="Feature" />
+                <div className="text-3xl">
+                  Own History, Securely and Transparently.
+                </div>
+              </div>
+              <ExploreCarButton
+                className="!px-8 !py-4 self-end"
+                useIconOnly={true}
+              />
+            </div>
+          </GridLayout>
+        </BannerCard>
+      </div>
+
+      <div className="col-span-4">
+        <div className="min-h-full flex flex-col justify-around items-start">
+          <div className="font-gravitas-one text-8xl">Unique Cars</div>
+          <ExploreCarButton className="!p-4 " />
         </div>
-        <GetCounter className="text-center w-full" />
-        <div className="flex w-full justify-center">
-          <IncrementCounterBtn />
-        </div>
-        <div className="w-full">
-          <SetCounterForm />
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        Made with ❤️ By Suraj
-      </footer>
-    </div>
+      </div>
+      <div className="col-span-4" />
+      <div className="col-span-4">
+        <BannerCard>
+          <div className="flex flex-col gap-2 items-start">
+            <Tag title="Feature" />
+            <div className="text-lg">
+              Your Gateway to Classic Rides, Backed by the Blockchain.
+            </div>
+            <Image src={Banner2} alt="banner image" className="rounded" />
+          </div>
+        </BannerCard>
+      </div>
+
+      <div className="col-span-4 text-lg text-stone-600">
+        Timeless designs, legendary journeys, and unmatched charm. Experience
+        the elegance of vintage, reimagined for you.
+      </div>
+      <div className="col-span-4 text-lg text-stone-600">
+        Vintage is not just a style; it&apos;s a way of celebrating the
+        craftsmanship and spirit of another time.
+      </div>
+      <div className="col-span-4 text-lg text-stone-600">
+        Some cars whisper luxury, but vintage cars roar elegance. Stand out with
+        a classic that’s built to last forever.
+      </div>
+
+      <div className="col-span-4">
+        <Image src={Banner3} alt="banner image" className="rounded" />
+      </div>
+      <div className="col-span-4 font-gravitas-one text-7xl flex items-center text-center">
+        Best Cars
+      </div>
+      <div className="col-span-4 text-xl flex items-center">
+        These cars don&apos;t just take you places—they take you back in time.
+        Own a story, not just a ride.
+      </div>
+    </GridLayout>
   );
 }

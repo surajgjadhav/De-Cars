@@ -1,12 +1,12 @@
-import { useReadCounter } from "@/generated";
+// import { useReadCounter } from "@/generated";
 import { useQueryClient } from "@tanstack/react-query";
 
 const useInvalidateCounterQuery = () => {
   const queryClient = useQueryClient();
-  const { queryKey } = useReadCounter();
+  // const { queryKey } = useReadCounter();
 
   const invalidateReadCounter = () =>
-    queryClient.invalidateQueries({ queryKey });
+    queryClient.invalidateQueries({ queryKey: "queryKey" });
 
   return { invalidateReadCounter };
 };

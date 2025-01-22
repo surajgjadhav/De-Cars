@@ -15,7 +15,7 @@ yarn install
 Set environment variables by copying `.env.example` to `.env` and filling in the values:
 
 - _NEXT_PUBLIC_WALLET_CONNECT_ID_ for the wallet connector. You can get one from [WalletConnect](https://walletconnect.org/) by going to [WalletConnect Cloud](https://cloud.walletconnect.com/sign-in).
-- _NEXT_PUBLIC_CONTRACT_ADDRESS_ for the deployed counter contract address.
+- _NEXT_PUBLIC_DC_TOKEN_ADDRESS_ for the deployed counter contract address.
 
 run the development server:
 

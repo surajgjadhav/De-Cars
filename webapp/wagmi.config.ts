@@ -8,7 +8,7 @@ export default defineConfig({
     foundry({
       project: "../contracts",
       artifacts: "../contracts/out",
-      include: ["Counter.sol/**"],
+      include: ["DeCarsToken.sol/**", "DeCarsMarketplace.sol/**"],
     }),
     react(),
   ],

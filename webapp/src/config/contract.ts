@@ -1,4 +1,6 @@
 import { Address } from "viem";
 
-export const contractAddress = process.env
-  .NEXT_PUBLIC_CONTRACT_ADDRESS as Address;
+export const dcTokenAddress = process.env
+  .NEXT_PUBLIC_DC_TOKEN_ADDRESS as Address;
+export const dcMarketplaceAddress = process.env
+  .NEXT_PUBLIC_DC_MARKETPLACE_ADDRESS as Address;
