@@ -46,11 +46,15 @@ contract DeCarsMarketplace is Ownable, ReentrancyGuard {
         i_usdc = IERC20(_usdc);
     }
 
-    function list(uint256 _tokenId, string memory _tokenURI) external onlyOwner returns (string memory) {
+    function list(uint256 _tokenId, string memory _tokenURI, uint64 _subscriptionId, uint32 _gasLimit)
+        external
+        onlyOwner
+        returns (string memory)
+    {
         s_mintedTokenIds.push(_tokenId);
         s_idToDetails[_tokenId] =
             Details({id: _tokenId, listingStatus: true, owner: payable(address(this)), tokenURI: _tokenURI});
-        i_dcToken.mint(address(this), _tokenId, _tokenURI);
+        i_dcToken.mintAndUpdatePrice(address(this), _tokenId, _tokenURI, _subscriptionId, _gasLimit);
         return _tokenURI;
     }
 

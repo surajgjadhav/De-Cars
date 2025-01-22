@@ -7,34 +7,19 @@ import {FunctionsRequest} from "@chainlink/contracts/src/v0.8/functions/v1_0_0/l
 import {FunctionSource} from "./FunctionSource.sol";
 import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
 
-contract CarPriceDetails is FunctionsClient, FunctionSource, OwnerIsCreator {
+contract CarPriceDetails is FunctionsClient, FunctionSource {
     using FunctionsRequest for FunctionsRequest.Request;
 
-    error CarPriceDetails__OnlyAutomationForwarderOrOwnerCanCall();
-
     bytes32 internal immutable i_donId;
-    address internal s_automationForwarderAddress;
 
     mapping(uint256 tokenId => uint256 price) internal s_tokenToPrice;
-
-    modifier onlyAutomationForwarderOrOwner() {
-        if (msg.sender != s_automationForwarderAddress && msg.sender != owner()) {
-            revert CarPriceDetails__OnlyAutomationForwarderOrOwnerCanCall();
-        }
-        _;
-    }
 
     constructor(address functionRouterAddress_, bytes32 donId_) FunctionsClient(functionRouterAddress_) {
         i_donId = donId_;
     }
 
-    function setAutomationForwarder(address automationForwarderAddress) external onlyOwner {
-        s_automationForwarderAddress = automationForwarderAddress;
-    }
-
-    function updateCarPrice(uint256 tokenId, uint64 subscriptionId, uint32 gasLimit)
-        external
-        onlyAutomationForwarderOrOwner
+    function _updateCarPrice(uint256 tokenId, uint64 subscriptionId, uint32 gasLimit)
+        internal
         returns (bytes32 requestId)
     {
         FunctionsRequest.Request memory req;

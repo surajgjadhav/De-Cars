@@ -30,11 +30,13 @@ library OracleLib {
         uint256 _updatedAt;
         uint80 _answeredInRound;
         try priceFeed.latestRoundData() returns (
-            uint80 roundId, int256 price, uint256 _startedAt, uint256 updatedAt, uint80 _answeredInRound
+            uint80 roundId, int256 price, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound
         ) {
             _roundId = roundId;
             _price = uint256(price);
+            _startedAt = startedAt;
             _updatedAt = updatedAt;
+            _answeredInRound = answeredInRound;
         } catch {
             revert OracleLib__PriceFeedDdosed();
         }
