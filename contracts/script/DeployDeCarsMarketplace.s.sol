@@ -11,10 +11,10 @@ contract DeployDeCarsMarketplace is Script {
 
     function run() public {
         HelperConfig config = new HelperConfig();
-        (address functionRouterAddress, bytes32 donId, address usdcUsdAggregator, address usdc) =
+        (address functionRouterAddress, bytes32 donId, address usdcUsdAggregator, address usdc, uint256 deployer) =
             config.activeNetworkConfig();
 
-        vm.startBroadcast();
+        vm.startBroadcast(deployer);
         DeCarsToken token = new DeCarsToken(functionRouterAddress, donId);
         DeCarsMarketplace marketplace = new DeCarsMarketplace(address(token), usdcUsdAggregator, usdc);
         token.setIssuer(address(marketplace));

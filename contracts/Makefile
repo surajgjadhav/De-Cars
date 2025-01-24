@@ -15,9 +15,9 @@ anvil :; anvil
 
 NETWORK_ARGS := --rpc-url http://127.0.0.1:8545 --private-key $(DEFAULT_ANVIL_KEY) --broadcast
 
-ifeq ($(findstring --network amoy,$(ARGS)),--network amoy)
-	NETWORK_ARGS := --chain-id 80002 --rpc-url $(AMOY_RPC_URL) --private-key $(PRIVATE_KEY) --etherscan-api-key $(ETHERSCAN_API_KEY) --verifier-url https://api.polygonscan.com/api --broadcast --verify -vvvv
+ifeq ($(findstring --network sepolia,$(ARGS)),--network sepolia)
+	NETWORK_ARGS := --rpc-url $(SEPOLIA_RPC_URL) --broadcast --verify -vvvv
 endif
 
 deploy:
-	@forge script script/DeployIssuer.s.sol:DeployIssuer $(NETWORK_ARGS)
+	@forge script --chain sepolia script/DeployDeCarsMarketplace.s.sol:DeployDeCarsMarketplace $(NETWORK_ARGS)

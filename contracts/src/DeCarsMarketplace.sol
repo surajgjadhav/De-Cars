@@ -7,10 +7,11 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
 import {OracleLib} from "./libraries/OracleLib.sol";
 
-contract DeCarsMarketplace is Ownable, ReentrancyGuard {
+contract DeCarsMarketplace is Ownable, ReentrancyGuard, IERC721Receiver {
     using OracleLib for AggregatorV3Interface;
 
     error DeCarsMarketplace__TokenNotListed();
@@ -33,6 +34,8 @@ contract DeCarsMarketplace is Ownable, ReentrancyGuard {
     uint256[] private s_mintedTokenIds;
     mapping(uint256 tokenId => Details details) internal s_idToDetails;
 
+    event CarListed(address operator, address from, uint256 tokenId, bytes data);
+
     modifier onlyListedTokensAllowded(uint256 _tokenId) {
         if (!s_idToDetails[_tokenId].listingStatus) {
             revert DeCarsMarketplace__TokenNotListed();
@@ -53,7 +56,7 @@ contract DeCarsMarketplace is Ownable, ReentrancyGuard {
     {
         s_mintedTokenIds.push(_tokenId);
         s_idToDetails[_tokenId] =
-            Details({id: _tokenId, listingStatus: true, owner: payable(address(this)), tokenURI: _tokenURI});
+            Details({id: _tokenId, listingStatus: true, owner: address(this), tokenURI: _tokenURI});
         i_dcToken.mintAndUpdatePrice(address(this), _tokenId, _tokenURI, _subscriptionId, _gasLimit);
         return _tokenURI;
     }
@@ -69,6 +72,15 @@ contract DeCarsMarketplace is Ownable, ReentrancyGuard {
         _depositeAmount(_amount);
 
         i_dcToken.safeTransferFrom(address(this), msg.sender, _tokenId);
+    }
+
+    function onERC721Received(address operator, address from, uint256 tokenId, bytes memory data)
+        public
+        override
+        returns (bytes4)
+    {
+        emit CarListed(operator, from, tokenId, data);
+        return this.onERC721Received.selector;
     }
 
     function _depositeAmount(uint256 _amount) internal nonReentrant {

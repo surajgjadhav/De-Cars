@@ -5,7 +5,7 @@ import {Test, console} from "forge-std/Test.sol";
 import {DeCarsToken} from "../src/DeCarsToken.sol";
 import {DeployDeCarsToken} from "../script/DeployDeCarsToken.s.sol";
 
-contract DeCarsNFTTest is Test {
+contract DeCarsTokenTest is Test {
     DeCarsToken public deCarsToken;
     DeployDeCarsToken public deployer;
     address public ISSUER = makeAddr("issuer");
