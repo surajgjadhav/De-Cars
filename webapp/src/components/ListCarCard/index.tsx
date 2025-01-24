@@ -10,6 +10,7 @@ export interface ListCarCardProps {
   year: number;
   price: number;
   isLoading?: boolean;
+  isListed?: boolean;
   onClickList: () => void;
 }
 
@@ -21,6 +22,7 @@ const ListCarCard = ({
   year,
   price,
   isLoading = false,
+  isListed = false,
   onClickList,
 }: ListCarCardProps) => {
   const name = `${make} - ${model}`;
@@ -46,9 +48,9 @@ const ListCarCard = ({
           color="warning"
           className="!rounded-full !capitalize disabled:!bg-slate-100 disabled:!text-slate-500"
           onClick={onClickList}
-          disabled={isLoading}
+          disabled={isLoading || isListed}
         >
-          List
+          {isListed ? "Listed" : "List"}
         </Button>
       </div>
     </Card>

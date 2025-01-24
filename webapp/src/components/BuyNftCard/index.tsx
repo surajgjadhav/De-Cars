@@ -1,7 +1,6 @@
-import { Button, Card, IconButton, Skeleton } from "@mui/material";
+import { Button, Card, Skeleton } from "@mui/material";
 import Image, { StaticImageData } from "next/image";
 import { PropsWithChildren } from "react";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 export interface BuyNftCardProps extends PropsWithChildren {
   className?: string;
@@ -67,23 +66,16 @@ const BuyNftCard = ({
         </div>
       </div>
 
-      <div className="flex flex-row gap-2 items-center">
+      <div className="flex flex-row">
         <Button
           variant="contained"
           color="warning"
           className="!rounded-full !capitalize !grow disabled:!bg-slate-100 disabled:!text-slate-500"
+          onClick={onClickDetails}
           disabled={isLoading}
         >
           Buy now
         </Button>
-        <IconButton
-          color="warning"
-          className="disabled:!bg-slate-100 disabled:!text-slate-500"
-          onClick={onClickDetails}
-          disabled={isLoading}
-        >
-          <InfoOutlinedIcon />
-        </IconButton>
       </div>
     </Card>
   );

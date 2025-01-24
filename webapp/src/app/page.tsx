@@ -16,7 +16,7 @@ export default function Home() {
       <div className="col-span-full">
         <BannerCard>
           <GridLayout>
-            <div className="col-span-9">
+            <div className="col-span-full md:col-span-9">
               <Image
                 src={Banner1}
                 alt="banner image"
@@ -24,7 +24,7 @@ export default function Home() {
                 className="rounded"
               />
             </div>
-            <div className="col-span-3 flex flex-col gap-4 items-start justify-between">
+            <div className="col-span-full md:col-span-3 flex flex-col gap-4 items-start justify-between">
               <div className="flex flex-col gap-4 items-start">
                 <Tag title="Feature" />
                 <div className="text-3xl">
@@ -40,14 +40,16 @@ export default function Home() {
         </BannerCard>
       </div>
 
-      <div className="col-span-4">
+      <div className="col-span-full md:col-span-4">
         <div className="min-h-full flex flex-col justify-around items-start">
-          <div className="font-gravitas-one text-8xl">Unique Cars</div>
+          <div className="font-gravitas-one text-7xl md:text-8xl">
+            Unique Cars
+          </div>
           <ExploreCarButton className="!p-4 " />
         </div>
       </div>
-      <div className="col-span-4" />
-      <div className="col-span-4">
+      <div className="col-span-full md:col-span-4" />
+      <div className="col-span-full md:col-span-4">
         <BannerCard>
           <div className="flex flex-col gap-2 items-start">
             <Tag title="Feature" />
@@ -59,26 +61,26 @@ export default function Home() {
         </BannerCard>
       </div>
 
-      <div className="col-span-4 text-lg text-stone-600">
+      <div className="col-span-full md:col-span-4 text-lg text-stone-600">
         Timeless designs, legendary journeys, and unmatched charm. Experience
         the elegance of vintage, reimagined for you.
       </div>
-      <div className="col-span-4 text-lg text-stone-600">
+      <div className="col-span-full md:col-span-4 text-lg text-stone-600">
         Vintage is not just a style; it&apos;s a way of celebrating the
         craftsmanship and spirit of another time.
       </div>
-      <div className="col-span-4 text-lg text-stone-600">
+      <div className="col-span-full md:col-span-4 text-lg text-stone-600">
         Some cars whisper luxury, but vintage cars roar elegance. Stand out with
         a classic that’s built to last forever.
       </div>
 
-      <div className="col-span-4">
+      <div className="col-span-full md:col-span-4">
         <Image src={Banner3} alt="banner image" className="rounded" />
       </div>
-      <div className="col-span-4 font-gravitas-one text-7xl flex items-center text-center">
+      <div className="col-span-full md:col-span-4 font-gravitas-one text-7xl flex items-center text-center">
         Best Cars
       </div>
-      <div className="col-span-4 text-xl flex items-center">
+      <div className="col-span-full md:col-span-4 text-xl flex items-center">
         These cars don&apos;t just take you places—they take you back in time.
         Own a story, not just a ride.
       </div>

@@ -13,9 +13,7 @@ export default {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        "open-sans": ["var(--font-open-sans)"],
-        tinos: ["var(--font-serif)"],
-        playfair: ["var(--font-playfair-display)"],
+        serif: ["var(--font-serif)"],
         "gravitas-one": ["var(--font-gravitas-one)"],
       },
     },

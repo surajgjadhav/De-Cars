@@ -1,18 +1,10 @@
 "use client";
-import {
-  Box,
-  Divider,
-  Drawer,
-  IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-} from "@mui/material";
+import { Box, Divider, Drawer, IconButton } from "@mui/material";
 import { useState } from "react";
 
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import NavLinks from "../NavLinks";
 
 export interface SideBarProps {
   className?: string;
@@ -31,18 +23,7 @@ export const SideBar = ({ className }: SideBarProps) => {
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              {/* <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon> */}
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+      <NavLinks className="flex-col p-4" />
       <Divider />
       <div className="flex">
         <ConnectButton />

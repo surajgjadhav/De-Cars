@@ -42,8 +42,6 @@ const CarList = () => {
     [isErrorNft, isErrorMetadata]
   );
 
-  console.log("listedCars: ", listedCars);
-
   if (isLoading) return <LoadingSkeleton />;
 
   if (isError)

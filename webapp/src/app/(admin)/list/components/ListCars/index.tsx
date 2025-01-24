@@ -12,8 +12,14 @@ import { useInitData } from "../../hooks/useInitData";
 
 const ListCars = () => {
   const router = useRouter();
-  const { carDetails, isError, isPending, isLoading, onCardClick } =
-    useInitData();
+  const {
+    carDetails,
+    listedCarIds,
+    isError,
+    isPending,
+    isLoading,
+    onCardClick,
+  } = useInitData();
 
   if (isPending)
     return <Loader className="col-span-full place-self-center py-20" />;
@@ -37,6 +43,7 @@ const ListCars = () => {
             imageLink={details.image}
             onClickList={() => onCardClick(details)}
             isLoading={isLoading}
+            isListed={listedCarIds.includes(BigInt(details.id))}
           />
         );
       })}

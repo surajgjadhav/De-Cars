@@ -1,7 +1,9 @@
+import { DeCarsAttributes } from "@/hooks/usePinata";
+
 export interface TraitFieldProps {
   className?: string;
-  title: string;
-  value: string;
+  title: DeCarsAttributes["trait_type"];
+  value: DeCarsAttributes["value"];
 }
 
 const TraitInfo = ({ className, title, value }: TraitFieldProps) => {
