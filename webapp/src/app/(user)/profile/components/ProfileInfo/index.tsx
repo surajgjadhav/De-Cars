@@ -62,7 +62,7 @@ const ProfileInfo = () => {
           errImage="/no-result.png"
           className="col-span-full"
           errorMsg="No car in account"
-          btnText="Explore Marketplace"
+          btnText="Explore Cars"
           onClickBtn={() => router.push(RoutePathEnum.MARKETPLACE)}
         />
       ) : (

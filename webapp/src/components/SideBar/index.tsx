@@ -1,6 +1,7 @@
 "use client";
 import { Box, Divider, Drawer, IconButton } from "@mui/material";
 import { useState } from "react";
+import "@rainbow-me/rainbowkit/styles.css";
 
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
@@ -24,8 +25,8 @@ export const SideBar = ({ className }: SideBarProps) => {
       onKeyDown={toggleDrawer(false)}
     >
       <NavLinks className="flex-col p-4" />
-      <Divider />
-      <div className="flex">
+      <Divider className="!my-2" />
+      <div className="flex w-full justify-center [&>div]:bg-orange-300 [&>div]:p-4 [&>div]:rounded">
         <ConnectButton />
       </div>
     </Box>

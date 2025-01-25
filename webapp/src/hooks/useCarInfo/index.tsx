@@ -48,10 +48,11 @@ export const fetchCarDetailsById = async (id: string): Promise<CarDetails> => {
   return carDetails;
 };
 
-export const useCarDetails = () => {
+export const useCarDetails = ({ enabled = true }: { enabled?: boolean }) => {
   return useQuery({
     queryFn: () => fetchCarDetails(),
     queryKey: [CARS],
+    enabled,
   });
 };
 

@@ -21,7 +21,7 @@ const ErrorComp = ({
       className={`flex flex-col gap-2 items-center justify-center ${className}`}
     >
       <Image
-        src={errImage ? "/something-went-wrong.png" : errImage}
+        src={!errImage ? "/something-went-wrong.png" : errImage}
         alt="Something went wrong"
         width={400}
         height={148}

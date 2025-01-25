@@ -23,6 +23,9 @@ import { dcMarketplaceAddress, dcTokenAddress } from "@/config/contract";
 import { useNftMetadataById } from "@/hooks/useNftMetadata";
 import { useMemo } from "react";
 import { useBuyCar } from "@/hooks/useBuyCar";
+import ConnectWalletModal from "@/components/ConnectWalletModal";
+import useModal from "@/hooks/useModal";
+import { useAccount } from "wagmi";
 
 /**
  * fetch car details from contract and dispplay all detysails of NFT
@@ -31,8 +34,9 @@ const CarDetails = () => {
   const params = useParams<{ id: string }>();
   const router = useRouter();
   const { id } = params;
+  const { address } = useAccount();
+  const connectWalletModal = useModal();
 
-  // const { data, isPending, isError } = useCarDetailsById(id);
   const {
     data: tokenURI,
     isPending: isLoadingTokenURI,
@@ -94,6 +98,17 @@ const CarDetails = () => {
   const { isPending, initiateCarBuying } = useBuyCar();
 
   console.log("tokenPriceUsdc: ", tokenPriceUsdc);
+
+  const onBuyCar = () => {
+    if (!address) {
+      connectWalletModal.modalOpen();
+      return;
+    }
+
+    if (tokenPriceUsdc) {
+      initiateCarBuying(BigInt(id), tokenPriceUsdc);
+    }
+  };
 
   if (isLoading)
     return <Loader className="col-span-full place-self-center py-40" />;
@@ -167,11 +182,7 @@ const CarDetails = () => {
                   variant="contained"
                   color="warning"
                   className="!rounded-full !capitalize"
-                  onClick={() =>
-                    tokenPriceUsdc
-                      ? initiateCarBuying(BigInt(id), tokenPriceUsdc)
-                      : undefined
-                  }
+                  onClick={onBuyCar}
                   disabled={isPending}
                 >
                   Buy now
@@ -181,6 +192,7 @@ const CarDetails = () => {
           </div>
         </>
       )}
+      <ConnectWalletModal {...connectWalletModal} />
     </GridLayout>
   );
 };

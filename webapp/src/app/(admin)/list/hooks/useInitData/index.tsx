@@ -1,20 +1,34 @@
 import { dcMarketplaceAddress } from "@/config/contract";
 import {
   useReadDeCarsMarketplaceGetListedCars,
-  useReadDeCarsTokenOwner,
+  useReadDeCarsMarketplaceOwner,
   useWriteDeCarsMarketplaceList,
 } from "@/generated";
 import { CarDetails, useCarDetails } from "@/hooks/useCarInfo";
 import { CarMetadata, usePinataUploadJSON } from "@/hooks/usePinata";
 import { useEffect, useMemo, useState } from "react";
+import { useAccount } from "wagmi";
 
 export const useInitData = () => {
   const [selectedCarId, setSelectedCarID] = useState(0);
+
+  const { address } = useAccount();
+
+  const {
+    data: owner,
+    isError: isErrorFetchingOwner,
+    isLoading: isLoadingOwner,
+  } = useReadDeCarsMarketplaceOwner({
+    address: dcMarketplaceAddress,
+  });
+
+  const isOwner = owner == address;
+
   const {
     data: carDetails,
     isError: isErrorCarDetails,
     isPending: isPendingCarDetails,
-  } = useCarDetails();
+  } = useCarDetails({ enabled: isOwner });
 
   const {
     data: listedCars,
@@ -22,6 +36,9 @@ export const useInitData = () => {
     isError: isErrorNft,
   } = useReadDeCarsMarketplaceGetListedCars({
     address: dcMarketplaceAddress,
+    query: {
+      enabled: isOwner,
+    },
   });
 
   const {
@@ -31,20 +48,18 @@ export const useInitData = () => {
     error: listError,
   } = useWriteDeCarsMarketplaceList();
 
-  const { data: owner } = useReadDeCarsTokenOwner();
-
   console.log("listError: ", listError);
   console.log("result: ", result);
   console.log("isPendingWM: ", isPendingWM);
   console.log("owner: ", owner);
 
   const isPending = useMemo(
-    () => isPendingCarDetails || isPendingNft,
-    [isPendingCarDetails, isPendingNft]
+    () => isPendingCarDetails || isPendingNft || isLoadingOwner,
+    [isPendingCarDetails, isPendingNft, isLoadingOwner]
   );
   const isError = useMemo(
-    () => isErrorCarDetails || isErrorNft,
-    [isErrorCarDetails, isErrorNft]
+    () => isErrorCarDetails || isErrorNft || isErrorFetchingOwner,
+    [isErrorCarDetails, isErrorNft, isErrorFetchingOwner]
   );
 
   const {
@@ -132,6 +147,7 @@ export const useInitData = () => {
     isError,
     isPending,
     isLoading,
+    isOwner,
     onCardClick,
   };
 };

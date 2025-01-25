@@ -19,6 +19,7 @@ const ListCars = () => {
     isError,
     isPending,
     isLoading,
+    isOwner,
     onCardClick,
   } = useInitData();
 
@@ -33,6 +34,17 @@ const ListCars = () => {
         onClickBtn={() => router.push(RoutePathEnum.HOME)}
       />
     );
+  if (!isOwner) {
+    return (
+      <ErrorComp
+        errImage="/no-access.png"
+        className="col-span-full"
+        errorMsg="You don't have access to this Page"
+        btnText="Go to Home"
+        onClickBtn={() => router.push(RoutePathEnum.HOME)}
+      />
+    );
+  }
 
   return (
     <div className="col-span-full grid grid-cols-1 md:grid-cols-3 gap-4">
