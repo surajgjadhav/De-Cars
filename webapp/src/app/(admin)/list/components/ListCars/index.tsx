@@ -5,6 +5,7 @@ import Loader from "@/components/Loader";
 import { RoutePathEnum } from "@/enums/RoutePaths";
 import { useRouter } from "next/navigation";
 import { useInitData } from "../../hooks/useInitData";
+import { getNormalizeImageUrl } from "@/utils";
 
 /**
  * uploads non listed cars to ipfs and update price after minitng
@@ -40,7 +41,7 @@ const ListCars = () => {
           <ListCarCard
             key={details.id}
             {...details}
-            imageLink={details.image}
+            imageLink={getNormalizeImageUrl(details.image)}
             onClickList={() => onCardClick(details)}
             isLoading={isLoading}
             isListed={listedCarIds.includes(BigInt(details.id))}

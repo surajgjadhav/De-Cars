@@ -2,7 +2,11 @@
 import GridLayout from "@/components/GridLayout";
 import Image from "next/image";
 import SubjectRoundedIcon from "@mui/icons-material/SubjectRounded";
-import { formatUSDC, getFormattedCurrency } from "@/utils";
+import {
+  formatUSDC,
+  getFormattedCurrency,
+  getNormalizeImageUrl,
+} from "@/utils";
 import { Button } from "@mui/material";
 import TraitInfo from "@/components/TraitInfo";
 import { useParams, useRouter } from "next/navigation";
@@ -121,7 +125,7 @@ const CarDetails = () => {
         <>
           <div className="col-span-full md:col-span-4 place-self-center">
             <Image
-              src={metaData.image}
+              src={getNormalizeImageUrl(metaData.image)}
               alt={"name"}
               className="rounded"
               width={315}

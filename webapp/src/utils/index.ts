@@ -23,3 +23,13 @@ export const formatUSDC = (amount: bigint) => {
 
   return `${localizedInteger}.${formattedFraction}`;
 };
+
+export const getNormalizeImageUrl = (url: string) => {
+  try {
+    const parsedUrl = new URL(url);
+    return parsedUrl.pathname;
+  } catch (error) {
+    console.error("URL Normalization Error", error);
+    return url;
+  }
+};

@@ -8,6 +8,7 @@ import { dcMarketplaceAddress } from "@/config/contract";
 import { useNftMetadata } from "@/hooks/useNftMetadata";
 import BuyNftCard from "@/components/BuyNftCard";
 import { useMemo } from "react";
+import { getNormalizeImageUrl } from "@/utils";
 
 /**
  * check all minted tokens and fetch it's info using tokenURI
@@ -73,7 +74,7 @@ const CarList = () => {
                   key={id}
                   name={name}
                   description={description}
-                  imageLink={image}
+                  imageLink={getNormalizeImageUrl(image)}
                   onClickDetails={() =>
                     router.push(`${RoutePathEnum.MARKETPLACE}/${id}`)
                   }
