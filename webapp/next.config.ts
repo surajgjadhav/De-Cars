@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: process.env.VERCEL_URL || "",
+        hostname: process.env.VERCEL_URL || "de-cars.vercel.app",
         port: "",
         pathname: "/cars/**",
         search: "",
