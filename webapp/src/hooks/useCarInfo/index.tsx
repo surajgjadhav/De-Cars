@@ -19,10 +19,9 @@ export type CarDetails = {
 };
 
 const getBaseURL = () => {
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`;
-  }
-  return "http://localhost:3000";
+  return process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "https://de-cars.vercel.app";
 };
 
 export const fetchCarDetails = async (): Promise<Array<CarDetails>> => {
