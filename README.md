@@ -1,8 +1,9 @@
-# Web3 Fullstack Starter Kit
+# De-Cars App
 
-This project is starter kit for developing Fullstack Web3 App (dApp).
+This is the Decentralized App (dApp) to Buy/Sell Vintage Cars by Tokenizing them into ERC-721 standard (NFT).
+This is based on concept of Real-World Assets (RWAs)
 
-It's a monorepo of Counter dApp, developed using [Next.js](https://nextjs.org/) for Frontend and [Foundry](https://book.getfoundry.sh/) for backend (contracts)
+It's a monorepo of De-Cars dApp, developed using [Next.js](https://nextjs.org/) for Frontend and [Foundry](https://book.getfoundry.sh/) for backend (contracts)
 
 ## Requirements
 
@@ -21,7 +22,7 @@ It's a monorepo of Counter dApp, developed using [Next.js](https://nextjs.org/) 
 Clone the repo:
 
 ```bash
-git clone https://github.com/surajgjadhav/web3-fullstack-starter-kit
+git clone https://github.com/surajgjadhav/De-Cars
 ```
 
 It contains two separate projects:

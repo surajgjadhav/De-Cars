@@ -1,4 +1,4 @@
-# Couter App: Contracts
+# De-Cars App: Contracts
 
 This is a [foundry](https://getfoundry.sh/) Project with [Soldeer](https://book.getfoundry.sh/reference/cli/forge/soldeer) dependency manager
 
@@ -12,8 +12,8 @@ This is a [foundry](https://getfoundry.sh/) Project with [Soldeer](https://book.
 ## Quickstart
 
 ```
-git clone https://github.com/surajgjadhav/web3-fullstack-starter-kit
-cd web3-fullstack-starter-kit/contracts
+git clone https://github.com/surajgjadhav/De-Cars
+cd De-Cars/contracts
 forge build
 ```
 
@@ -36,7 +36,8 @@ make deploy
 To deploy contract on another chain
 
 ```shell
-forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+forge script script/DeCarsMarketplace.s.sol:DeCarsMarketplace --rpc-url <your_rpc_url> --private-key <your_private_key>
+forge script script/DeCarsToken.s.sol:DeCarsToken --rpc-url <your_rpc_url> --private-key <your_private_key>
 ```
 
 ### Test
